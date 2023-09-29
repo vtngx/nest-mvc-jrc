@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>App</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        background: #222831;
+    }
+
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        background: rgba(78, 83, 90, 0.30);
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .buttons-container button {
+        margin-right: 25px;
+        margin-left: 25px;
+        width: 150px;
+        height: 150px;
+        border: none;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .buttons-container .btn-approve {
+        background-color: #11955D;
+    }
+
+    .buttons-container .btn-reject {
+        background-color: #DC4747;
+    }
+
+    .buttons-container .btn-approve:hover,
+    .buttons-container .btn-reject:hover {
+        border: 1px solid black;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="main">
+        {{ message }}
+        <div class="buttons-container">
+            <form action="/login1" method="post">
+                <button type="submit" class="btn-approve">
+                    Approve
+                </button>
+            </form>
+            <form action="/login2" method="post">
+                <button type="submit" class="btn-reject">
+                    Reject
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    console.log( typeof {{message}})
+</script>
+
+</html>
