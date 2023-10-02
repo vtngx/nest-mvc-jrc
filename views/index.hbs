@@ -1,99 +1,51 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
-        integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
-        crossorigin="anonymous"></script>
-    <script>
-        const socket = io('http://localhost:3000');
-        socket.on('connect', function () {
-            console.log('Connected');
-
-            socket.emit('events', { test: 'test' });
-            socket.emit('identity', 0, response =>
-                console.log('Identity:', response),
-            );
-        });
-        socket.on('events', function (data) {
-            console.log('event', data);
-        });
-        socket.on('exception', function (data) {
-            console.log('event', data);
-        });
-        socket.on('disconnect', function () {
-            console.log('Disconnected');
-        });
-    </script>
-    <meta charset="utf-8" />
-    <title>App</title>
-</head>
-<style>
-    body {
-        margin: 0;
-        background: #222831;
-    }
-
-    .main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        background: rgba(78, 83, 90, 0.30);
-    }
-
-    .buttons-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-    }
-
-    .buttons-container button {
-        margin-right: 25px;
-        margin-left: 25px;
-        width: 150px;
-        height: 150px;
-        border: none;
-        border-radius: 50%;
-        color: white;
-    }
-
-    .buttons-container .btn-approve {
-        background-color: #11955D;
-    }
-
-    .buttons-container .btn-reject {
-        background-color: #DC4747;
-    }
-
-    .buttons-container .btn-approve:hover,
-    .buttons-container .btn-reject:hover {
-        border: 1px solid black;
-        cursor: pointer;
-    }
-</style>
-
-<body>
-    <div class="main">
-        {{ message }}
-        <div class="buttons-container">
-            <form action="/login1" method="post">
-                <button type="submit" class="btn-approve">
-                    Approve
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Document</title>
+    <link
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+      integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN'
+      crossorigin='anonymous'
+    />
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'
+      integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL'
+      crossorigin='anonymous'
+    ></script>
+    <script
+      src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js'
+      integrity='sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo='
+      crossorigin='anonymous'
+    ></script>
+    <script
+      src='https://cdn.socket.io/4.6.0/socket.io.min.js'
+      integrity='sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+'
+      crossorigin='anonymous'
+    ></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src='./index.js'></script>
+  </head>
+  <body>
+    <main class='container'>
+      <div class='row row-gap-4 py-4'>
+        {{#each fleet}}
+          <div class='col-xs-12 col-md-6'>
+            <div class='card'>
+              <div class='card-header'>{{this.name}}</div>
+              <div class='card-body text-center'>
+                <button id="{{this.id}}" class='btn btn-success rounded-circle'>
+                  <i class="ph-fill ph-arrow-fat-up"></i>
                 </button>
-            </form>
-            <form action="/login2" method="post">
-                <button type="submit" class="btn-reject">
-                    Reject
+                <button id="{{this.id}}" class='btn btn-danger rounded-circle'>
+                  <i class="ph-fill ph-arrow-fat-down"></i>
                 </button>
-            </form>
-        </div>
-    </div>
-</body>
-{{!-- <script>
-    console.log(typeof {{ message }})
-</script> --}}
-
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </main>
+  </body>
 </html>

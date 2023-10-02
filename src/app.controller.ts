@@ -9,7 +9,13 @@ export class AppController {
   @Get()
   root(@Res() res: Response) {
     return res.render(this.appService.getViewName(), {
-      message: { id: 1, name: 'abc' },
+      fleet: [
+        { id: 1, name: 'Ship 1' },
+        { id: 2, name: 'Ship 2' },
+        { id: 3, name: 'Ship 3' },
+        { id: 4, name: 'Ship 4' },
+        { id: 5, name: 'Ship 5' },
+      ],
     });
   }
 
