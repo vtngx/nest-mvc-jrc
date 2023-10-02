@@ -7,10 +7,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @Render('index')
-  root() {
-    return { message: { id: 1, name: 'abc' } };
-    // return this.appService.getHello();
+  root(@Res() res: Response) {
+    return res.render(this.appService.getViewName(), {
+      message: { id: 1, name: 'abc' },
+    });
   }
 
   @Post('/login1')

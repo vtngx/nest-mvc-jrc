@@ -5,4 +5,8 @@ export class AppService {
   getHello() {
     return { message: 'Hello World!' };
   }
+
+  getViewName() {
+    return 'index';
+  }
 }
